@@ -1,0 +1,42 @@
+.title
+  h1 レシピを投稿する
+- if recipe.errors.present?
+  ul.mb-4
+    - recipe.errors.full_messages.each do |message|
+      li style="color: red" = message
+= form_for recipe, method: request_method do |f|
+  .form-group.row
+    = f.label :video, class: "col-2 col-form-label"
+    .col-10
+      = f.file_field :video, accept: 'video/*'
+  .form-group.row
+    = f.label :title, class: "col-3 col-form-label"
+    .col-12
+      = f.text_field :title, required: true, class: "form-control", maxlength: 48
+  .form-group.row
+    = f.label :description, class: "col-3 col-form-label"
+    .col-12
+      = f.text_area :description, class: "form-control", maxlength: 255
+  .form-group.row
+    = f.label :prep_time, class: "col-3 col-form-label"
+    .col-12
+      = f.text_field :prep_time, class: "form-control", maxlength: 32
+  .form-group.row
+    = f.label :cook_time, class: "col-3 col-form-label"
+    .col-12
+      = f.text_field :cook_time, class: "form-control", maxlength: 32
+  .form-group.row
+    = f.label :total_time, class: "col-3 col-form-label"
+    .col-12
+      = f.text_field :total_time, class: "form-control", maxlength: 32
+  .form-group.row
+    = f.label :recipe_yield, class: "col-3 col-form-label"
+    .col-12
+      = f.text_field :recipe_yield, class: "form-control", maxlength: 32, placeholder: '例：２人前'
+
+  = f.hidden_field :user_id
+  .mt-4 align="center"
+    span.px-4
+      = f.submit '下書き保存する', class: 'btn btn-secondary btn-lg', name: 'save'
+    span.px-4
+      = f.submit '公開する', class: 'btn btn-primary btn-lg', name: 'publish'

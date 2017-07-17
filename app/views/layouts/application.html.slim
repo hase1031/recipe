@@ -11,11 +11,11 @@ html
     header.header.clearfix
       nav.bg-inverse
         ul.nav.nav-pills.float-right
-          li.nav-item
-            a.nav-link href="#" レシピ一覧
           - if user_signed_in?
             li.nav-item
-              a.nav-link href="#" レシピを投稿する
+              = link_to 'レシピを投稿する', new_recipe_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'MYレシピ', users_recipes_path, class: 'nav-link'
             li.nav-item
               = link_to 'ログアウト', destroy_user_session_path, class: 'nav-link'
           - else
@@ -23,7 +23,8 @@ html
               = link_to 'ログイン', new_user_session_path, class: 'nav-link'
             li.nav-item
               = link_to '会員登録', new_user_registration_path, class: 'nav-link'
-      h3.text-muted Kurashiru
+      h2.text-muted
+        = link_to 'Kurashiru', root_path
     - if notice
       .alert.alert-success.js-tapToDismiss
         span = notice

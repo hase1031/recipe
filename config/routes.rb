@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   scope '/', controller: :home do
     root 'home#index'
   end
+  resources :recipes
+  namespace :users do
+    resources :recipes, only: %i[index]
+  end
 end

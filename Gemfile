@@ -39,6 +39,11 @@ gem 'slim-rails'
 gem 'devise'
 gem 'validates_email_format_of'
 gem 'dalli'
+gem 'carrierwave'
+gem 'streamio-ffmpeg'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+gem 'draper', '>= 3.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

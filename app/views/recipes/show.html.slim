@@ -1,0 +1,25 @@
+- if @recipe.is_author(current_user)
+  = link_to edit_recipe_path(@recipe) do
+    .mb-4
+      button.btn.btn-primary.btn-block レシピを編集する
+
+.recipe
+  /動画
+  h1 = @recipe.title
+  p = @recipe.description
+  ul.recipe-time
+    li
+      | 準備時間：
+      = @recipe.prep_time
+      | 、
+    li
+      | 調理時間：
+      = @recipe.cook_time
+      | 、
+    li
+      | 合計時間：
+      = @recipe.total_time
+  h2
+    | 食材
+    - if @recipe.recipe_yield.present?
+      = "（#{@recipe.recipe_yield}）"

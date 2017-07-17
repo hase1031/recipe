@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      recipe: "レシピ情報"
+    attributes:
+      recipe:
+        id: "レシピID"
+        title: "タイトル"
+        description: "説明文"
+        user_id: "作成者ID"
+        video: 動画
+        ingredients: "食材"
+        recipe_yield: "人前"
+        prep_time: "準備時間"
+        cook_time: "調理時間"
+        total_time: "合計時間"
+        created_at: "作成日時"
+        updated_at: "更新日時"

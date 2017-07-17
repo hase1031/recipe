@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? && password_required? || changes["password"] }
   validates :password_confirmation, presence: true, if: -> { new_record? && password_required? || changes["password"] }
 
+  has_many :recipes
+
 end

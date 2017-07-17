@@ -15,13 +15,88 @@
  */
 @import "bootstrap";
 
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure, footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+  font-size: 100%;
+  font-style: normal;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+  display: block;
+}
+html {
+  height: 100%;
+}
+body {
+  font-size: 13px;
+  color: var(--color-black);
+  background: #fdfdfd;
+  -webkit-text-size-adjust: 100%;
+}
+a {
+  color: var(--color-lightblue);
+  text-decoration: none;
+}
+ul, ol {
+  list-style-type: none;
+}
+
 header {
   padding: 16px 32px;
   background-color: white;
+  h2 {
+    font-size: 1.75rem;
+  }
 }
 body {
   background-color: #F7F7F7;
 }
 .container {
   padding: 32px 16px;
+}
+.field_with_errors {
+  width: 100%;
+}
+.title {
+  h1 {
+    font-size: 24px;
+    padding-bottom: 16px;
+  }
+}
+
+.recipe {
+  ul.recipe-time {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.recipe-item {
+  height: 96px;
+  width: 100%;
+  border-top: 1px solid #eee;
+  background-color: #FFFDFD;
+  &:last-child {
+    border-bottom: 1px solid #eee;
+  }
+  .recipe-item-image, .recipe-item-title {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .recipe-item-image {
+    img {
+      width: 96px;
+      height: 96px;
+    }
+  }
+  .recipe-item-title {
+    height: 96px;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 2.0;
+  }
 }
