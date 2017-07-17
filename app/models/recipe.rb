@@ -21,6 +21,9 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients
   accepts_nested_attributes_for :ingredients
+  has_many :recipe_tags
+  has_many :tags, through: :recipe_tags
+  accepts_nested_attributes_for :tags
 
   scope :latest, -> {
     where(status: :published).order(published_at: :desc)

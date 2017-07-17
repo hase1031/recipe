@@ -18,6 +18,13 @@
     .col-12
       = f.text_area :description, class: "form-control", maxlength: 255
   .form-group.row
+    = f.label :tags, class: "col-3 col-form-label"
+    ul.col-12
+      - recipe.tags.each do |tag|
+        li style="float: left"
+          = f.fields_for :tags, tag do |t|
+            = t.text_field :name
+  .form-group.row
     = f.label :prep_time, class: "col-3 col-form-label"
     .col-12
       = f.text_field :prep_time, class: "form-control", maxlength: 32

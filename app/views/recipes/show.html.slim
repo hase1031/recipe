@@ -35,3 +35,6 @@
     h2 料理手順
     .processes-detail
       = @recipe.html.html_safe
+  p.mt-4 style="border-top: 1px solid #eee; padding-top: 8px;"
+    - for tag in @recipe.tags
+      span style="background-color: white; padding: 4px 8px;" = tag.name
