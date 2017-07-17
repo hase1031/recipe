@@ -44,6 +44,7 @@ gem 'streamio-ffmpeg'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'draper', '>= 3.0.0'
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,5 +1,7 @@
 class Recipe < ApplicationRecord
 
+  before_save :convert_to_html
+
   enum status: [
       :editing, # 執筆中
       :published, # 公開済み
@@ -32,6 +34,10 @@ class Recipe < ApplicationRecord
 
   def is_published?
     self.published?
+  end
+
+  def convert_to_html
+    self.html = Markdown.new(self.markdown).to_html
   end
 
 end

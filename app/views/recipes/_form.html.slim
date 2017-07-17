@@ -44,10 +44,15 @@
             = i.text_field :name
           td
             = i.text_field :volume
-
+  .form-group.row
+    = f.label :markdown, class: "col-3 col-form-label"
+  = f.text_area :markdown, id: 'markdown'
   = f.hidden_field :user_id
   .mt-4 align="center"
     span.px-4
       = f.submit '下書き保存する', class: 'btn btn-secondary btn-lg', name: 'save'
     span.px-4
       = f.submit '公開する', class: 'btn btn-primary btn-lg', name: 'publish'
+
+javascript:
+  var simplemde = new SimpleMDE({element: document.getElementById("markdown")});

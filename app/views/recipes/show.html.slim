@@ -4,8 +4,8 @@
       button.btn.btn-primary.btn-block レシピを編集する
 
 .recipe
-  /動画
-  h1 = @recipe.title
+  video[autoplay loop muted controls src=@recipe.video_url.to_s]
+  h1.mt-4 = @recipe.title
   p = @recipe.description
   ul.recipe-time
     li
@@ -19,15 +19,19 @@
     li
       | 合計時間：
       = @recipe.total_time
-  h2
+  h2.mt-4
     | 食材
     - if @recipe.recipe_yield.present?
       = "（#{@recipe.recipe_yield}）"
-  table
+  table border="1"
     tr
       th 食材名
       th 量
     - @recipe.ingredients.each do |ingredient|
       tr
-        th = ingredient.name
-        th = ingredient.volume
+        td = ingredient.name
+        td = ingredient.volume
+  .processes.mt-4
+    h2 料理手順
+    .processes-detail
+      = @recipe.html.html_safe

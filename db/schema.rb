@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717091259) do
+ActiveRecord::Schema.define(version: 20170717103310) do
 
   create_table "ingredients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC" do |t|
     t.bigint "recipe_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20170717091259) do
     t.string "description"
     t.bigint "user_id", null: false
     t.string "video"
+    t.text "markdown"
+    t.text "html"
     t.string "prep_time", limit: 32
     t.string "cook_time", limit: 32
     t.string "total_time", limit: 32

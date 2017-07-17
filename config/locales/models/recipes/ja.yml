@@ -10,6 +10,8 @@ ja:
         user_id: "作成者ID"
         video: 動画
         ingredients: "食材"
+        markdown: "料理手順"
+        html: "料理手順"
         recipe_yield: "人前"
         prep_time: "準備時間"
         cook_time: "調理時間"

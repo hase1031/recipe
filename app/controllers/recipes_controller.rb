@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.new
     assign_attributes
     if @recipe.save
       redirect_to recipe_path(@recipe)
@@ -56,6 +56,7 @@ class RecipesController < ApplicationController
         :total_time,
         :recipe_yield,
         :user_id,
+        :markdown,
         ingredients_attributes: [
             :id,
             :name,
@@ -68,6 +69,9 @@ class RecipesController < ApplicationController
     if params[:publish].present?
       @recipe.status = :published
       @recipe.published_at = Time.now
+    else
+      @recipe.status = :editing
+      @recipe.published_at = nil
     end
     params[:recipe][:ingredients_attributes] = params[:recipe][:ingredients_attributes].select { |key, value|
       value['name'].present? and value['volume'].present?

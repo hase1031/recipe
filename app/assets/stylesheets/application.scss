@@ -68,9 +68,35 @@ body {
 }
 
 .recipe {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  video {
+    width: 100%;
+    max-width: 640px;
+    max-height: 640px;
+  }
   ul.recipe-time {
     li {
       display: inline-block;
+    }
+  }
+  th, td {
+    width: 120px;
+    height: 48px;
+    font-size: 16px;
+    padding: 8px;
+  }
+  .processes {
+    h2 {
+      font-size: 18px;
+    }
+    &-detail {
+      h1, h2, h3, h4 {
+        font-size: 20px;
+        border-bottom: 2px solid #0055aa;
+      }
     }
   }
 }
@@ -88,9 +114,12 @@ body {
     vertical-align: middle;
   }
   .recipe-item-image {
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
     img {
-      width: 96px;
-      height: 96px;
+      width: 100%;
+      height: auto;
     }
   }
   .recipe-item-title {
