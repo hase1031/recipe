@@ -3,11 +3,14 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.build
+    20.times do
+      @recipe.ingredients.build
+    end
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    prepare_for_publish
+    assign_attributes
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -18,12 +21,15 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    10.times do
+      @recipe.ingredients.build
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-    prepare_for_publish
-    if @recipe.update(recipe_params)
+    assign_attributes
+    if @recipe.save
       redirect_to recipe_path(@recipe)
     else
       render :edit
@@ -50,12 +56,26 @@ class RecipesController < ApplicationController
         :total_time,
         :recipe_yield,
         :user_id,
+        ingredients_attributes: [
+            :id,
+            :name,
+            :volume,
+        ],
     )
   end
 
-  def prepare_for_publish
-    @recipe.status = :published
-    @recipe.published_at = Time.now if params[:publish].present?
+  def assign_attributes
+    if params[:publish].present?
+      @recipe.status = :published
+      @recipe.published_at = Time.now
+    end
+    params[:recipe][:ingredients_attributes] = params[:recipe][:ingredients_attributes].select { |key, value|
+      value['name'].present? and value['volume'].present?
+    }
+    @recipe.assign_attributes(recipe_params)
+    @recipe.ingredients.each do |ingredient|
+      ingredient.mark_for_destruction if ingredient.name.blank? or ingredient.volume.blank?
+    end
   end
 
 end

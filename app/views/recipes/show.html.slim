@@ -23,3 +23,11 @@
     | 食材
     - if @recipe.recipe_yield.present?
       = "（#{@recipe.recipe_yield}）"
+  table
+    tr
+      th 食材名
+      th 量
+    - @recipe.ingredients.each do |ingredient|
+      tr
+        th = ingredient.name
+        th = ingredient.volume

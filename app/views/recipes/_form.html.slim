@@ -33,6 +33,17 @@
     = f.label :recipe_yield, class: "col-3 col-form-label"
     .col-12
       = f.text_field :recipe_yield, class: "form-control", maxlength: 32, placeholder: '例：２人前'
+  table
+    tr
+      th 食材名
+      th 量
+    - recipe.ingredients.each do |ingredient|
+      = f.fields_for :ingredients, ingredient do |i|
+        tr
+          td
+            = i.text_field :name
+          td
+            = i.text_field :volume
 
   = f.hidden_field :user_id
   .mt-4 align="center"

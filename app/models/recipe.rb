@@ -17,6 +17,8 @@ class Recipe < ApplicationRecord
   validates :recipe_yield, length: {maximum: 32}
 
   belongs_to :user
+  has_many :ingredients
+  accepts_nested_attributes_for :ingredients
 
   scope :latest, -> {
     where(status: :published).order(published_at: :desc)
