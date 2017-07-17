@@ -15,7 +15,7 @@ default: &default
 
 development:
   <<: *default
-  database: luccy_development
+  database: kurashiru_development
   host:     "<%= ENV['DB_HOST'] || 'localhost' %>"
   port:     <%= ENV['DB_PORT'] %>
   username: "<%= ENV['DB_USERNAME'] || 'root' %>"
@@ -26,7 +26,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: luccy_test
+  database: kurashiru_test
   host:     "<%= ENV['DB_HOST'] || 'localhost' %>"
   port:     <%= ENV['DB_PORT'] %>
   username: "<%= ENV['DB_USERNAME'] || 'root' %>"
