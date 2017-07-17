@@ -1,0 +1,20 @@
+h1 ログイン
+- if resource.errors.present?
+  ul
+    - resource.errors.full_messages.each do |message|
+      li = message
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: 'form-control', required: true, placeholder: "Eメールアドレス"
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control', required: true, placeholder: "Password"
+
+  .checkbox
+    label
+      = f.check_box :remember_me, checked: true
+      | &nbsp;ログイン状態を保持
+
+  button.btn.btn-lg.btn-primary.btn-block type="submit" Login

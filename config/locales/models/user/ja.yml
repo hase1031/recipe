@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        invalid_email_address: 'は不正な値です'
+    models:
+      user: "ユーザー情報"
+    attributes:
+      user:
+        id: "ユーザーID"
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        email_confirmation: "メールアドレス(確認用)"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        created_at: "作成日時"
+        updated_at: "更新日時"

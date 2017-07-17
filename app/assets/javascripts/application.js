@@ -14,5 +14,16 @@
 //= require turbolinks
 //= require jquery3
 //= require popper
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require_tree .
+
+$(document).on('turbolinks:load', function () {
+    var tapToDismiss = $('.js-tapToDismiss');
+    tapToDismiss.on('click touchend', function () {
+        tapToDismiss.fadeOut();
+    });
+    tapToDismiss.slideDown(300);
+    setTimeout(function () {
+        tapToDismiss.slideUp(300);
+    }, 5000);
+});

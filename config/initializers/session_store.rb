@@ -7,4 +7,4 @@ Rails.application.config.session_store ActionDispatch::Session::CacheStore,
                                            ENV['MEMCACHE_SERVERS'].present? ? ENV['MEMCACHE_SERVERS'].split(',') : 'localhost:11211', {
                                            namespace: 'sessions',
                                        }),
-                                       expire_after: 2.months
+                                       expire_after: 2.weeks

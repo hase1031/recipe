@@ -8,4 +8,27 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    = yield
+    header.header.clearfix
+      nav.bg-inverse
+        ul.nav.nav-pills.float-right
+          li.nav-item
+            a.nav-link href="#" レシピ一覧
+          - if user_signed_in?
+            li.nav-item
+              a.nav-link href="#" レシピを投稿する
+            li.nav-item
+              = link_to 'ログアウト', destroy_user_session_path, class: 'nav-link'
+          - else
+            li.nav-item
+              = link_to 'ログイン', new_user_session_path, class: 'nav-link'
+            li.nav-item
+              = link_to '会員登録', new_user_registration_path, class: 'nav-link'
+      h3.text-muted Kurashiru
+    - if notice
+      .alert.alert-success.js-tapToDismiss
+        span = notice
+    - if alert
+      .alert.alert-danger.js-tapToDismiss
+        span = alert
+    .container
+      = yield

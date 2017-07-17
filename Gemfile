@@ -37,6 +37,7 @@ gem 'jquery-rails'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'slim-rails'
 gem 'devise'
+gem 'validates_email_format_of'
 gem 'dalli'
 
 group :development, :test do
