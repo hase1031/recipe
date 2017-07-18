@@ -4,7 +4,7 @@
       button.btn.btn-primary.btn-block レシピを編集する
 
 .recipe
-  video[autoplay loop muted controls src=@recipe.video_url.to_s]
+  video[autoplay muted controls src=@recipe.video_url.to_s]
   h1.mt-4 = @recipe.title
   p = @recipe.description
   ul.recipe-time
@@ -38,3 +38,15 @@
   p.mt-4 style="border-top: 1px solid #eee; padding-top: 8px;"
     - for tag in @recipe.tags
       span style="background-color: white; padding: 4px 8px;" = tag.name
+
+  h2.mt-4 関連するレシピ
+  .recipes
+    - for recipe in @related_recipes
+      = link_to recipe_path(recipe) do
+        .recipe-item
+          .recipe-item-image
+            - if recipe.video.present?
+              = image_tag(recipe.video_url(:screenshot).to_s, alt: "screenshot")
+            - else
+              = image_tag('no_image.png')
+          .recipe-item-title = recipe.title

@@ -25,8 +25,12 @@ class Recipe < ApplicationRecord
   has_many :tags, through: :recipe_tags
   accepts_nested_attributes_for :tags
 
+  scope :current_published, -> {
+    where(status: :published)
+  }
+
   scope :latest, -> {
-    where(status: :published).order(published_at: :desc)
+    order(published_at: :desc)
   }
 
   def is_author(user)

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @recipes = Recipe.latest.page(params[:page])
+    @recipes = Recipe.current_published.latest.page(params[:page])
   end
 
 end

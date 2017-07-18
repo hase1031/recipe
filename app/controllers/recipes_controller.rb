@@ -3,12 +3,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.build
-    20.times do
-      @recipe.ingredients.build
-    end
-    10.times do
-      @recipe.tags.build
-    end
+    build_children
   end
 
   def create
@@ -17,6 +12,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      build_children
       flash.now[:alert] = 'レシピの保存に失敗しました。'
       render :new
     end
@@ -24,12 +20,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    10.times do
-      @recipe.ingredients.build
-    end
-    (10 - @recipe.tags.size).times do
-      @recipe.tags.build
-    end
+    build_children
   end
 
   def update
@@ -38,6 +29,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      build_children
       render :edit
     end
   end
@@ -47,7 +39,18 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id]).decorate
+    @recipe = Recipe.includes(:tags).find(params[:id]).decorate
+    tag_ids = @recipe.tags.map(&:id)
+    related = RecipeTag.joins(:recipe)
+                  .merge(Recipe.current_published)
+                  .where(tag_id: tag_ids)
+                  .group(:recipe_id)
+                  .order('count_tag_id DESC')
+                  .limit(11) #10件表示
+                  .count(:tag_id)
+                  .keys
+    related.delete(@recipe.id)
+    @related_recipes = Recipe.find(related)
   end
 
   private
@@ -90,12 +93,18 @@ class RecipesController < ApplicationController
       value['name'].present? and value['volume'].present? or value['id'].present?
     }
     @recipe.assign_attributes(recipe_params)
-    @recipe.tags.each do |tag|
-      tag.mark_for_destruction if tag.name.blank?
-    end
+    @recipe.tags = @recipe.tags.select { |tag| tag.name.present? }.map { |tag| Tag.find_or_create_by(name: tag.name) }
     @recipe.ingredients.each do |ingredient|
       ingredient.mark_for_destruction if ingredient.name.blank? or ingredient.volume.blank?
     end
   end
 
+  def build_children
+    10.times do
+      @recipe.ingredients.build
+    end
+    (10 - @recipe.tags.size).times do
+      @recipe.tags.build
+    end
+  end
 end
